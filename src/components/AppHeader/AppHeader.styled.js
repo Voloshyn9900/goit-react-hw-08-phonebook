@@ -17,3 +17,26 @@ export const StyledLink = styled(NavLink)`
 export const Wraper = styled.div`
   margin-right: 50px;
 `;
+
+
+export const Nav = styled.nav`
+  display: flex;
+`;
+
+export const WraperProfile = styled.div`
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  font-weight: 700;
+`;
+
+export const BtnLogout = styled.button`
+  margin-right: 20px;
+  margin-left: 20px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  color: #2A363B;
+`;
+

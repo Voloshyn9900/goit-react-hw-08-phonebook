@@ -1,14 +1,22 @@
 import AppHeader from './components/AppHeader/AppHeader';
-/////////////////////////////
 import { Route, Routes } from 'react-router-dom';
-import HomePage from 'pages/HomePage';
-import ContactsPage from 'pages/ContactsPage';
-import RegisterPage from 'pages/RegisterPage';
-import LoginPage from 'pages/LoginPage';
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { fetchRefreshUser } from './redux/auth/operations';
-import { useDispatch } from 'react-redux';
-import { RedirectRoute } from 'components/Routs/RedirectRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { RedirectRoute } from 'components/Routes/RedirectRoute';
+import { selectIsRefreshing } from './redux/auth/selectors';
+import { PrivateRoutes } from 'components/Routes/PrivateRouts';
+import { PreLoader } from 'components/PreLoader/PreLoader';
+
+// import HomePage from 'pages/HomePage';
+// import ContactsPage from 'pages/ContactsPage';
+// import RegisterPage from 'pages/RegisterPage';
+// import LoginPage from 'pages/LoginPage';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -16,8 +24,24 @@ export const App = () => {
     dispatch(fetchRefreshUser());
   }, [dispatch]);
 
-  return (
-    <>
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  return isRefreshing ? (
+    <b>Refreshing user</b>
+  ) : (
+    <Suspense
+      fallback={
+        <div
+          style={{
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#ffffff',
+          }}
+        >
+          <PreLoader />
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<AppHeader />}>
           <Route index element={<HomePage />} />
@@ -30,10 +54,21 @@ export const App = () => {
               />
             }
           />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/login"
+            element={
+              <RedirectRoute redirectTo="/contacts" component={<LoginPage />} />
+            }
+          />
+
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoutes redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
         </Route>
       </Routes>
-    </>
+    </Suspense>
   );
 };

@@ -8,6 +8,10 @@ const setAuthToken = (token) => {
 
 };
 
+const clearAuthToken = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
 export const fetchRegister = createAsyncThunk(
   'auth/fetchRegister',
   async (credentials, thunkAPI) => {
@@ -21,22 +25,46 @@ export const fetchRegister = createAsyncThunk(
   }
 );
 
+export const fetchLogIn = createAsyncThunk(
+  'auth/fetchLogIn',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.post('/users/login', credentials);
+      setAuthToken(response.data.token);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const fetchlogOut = createAsyncThunk(
+  'auth/fetchlogOut',
+  async (_, thunkAPI) => {
+    try {
+      await axios.post('/users/logout');
+      clearAuthToken();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 
 export const fetchRefreshUser = createAsyncThunk(
   'auth/fetchRefreshUser',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log(state);
-    const { token } = state.auth;
-    console.log(token);
 
-    if (!token) {
-      return thunkAPI.rejectWithValue("Not have token");
+    if (!state.auth.token) {
+      return thunkAPI.rejectWithValue('Not have token');
     }
     try {
-      setAuthToken(token);
+      setAuthToken(state.auth.token);
       const response = await axios.get('/users/current');
+      console.log(axios.defaults);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
