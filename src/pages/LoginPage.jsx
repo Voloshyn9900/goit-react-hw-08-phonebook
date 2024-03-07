@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchLogIn } from '../redux/auth/operations';
-import TextField from '@mui/material/TextField';
-import { StyleText } from './LoginPage.styled';
+import { FaLock } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import {
+  Wrapper,
+  FormWrapper,
+  TitleText,
+  InputBox,
+  SpanIcon,
+  Input,
+  Label,
+  BtnLogin,
+} from './LoginPage.styled';
 
-const styles = {
-
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -26,37 +28,46 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h1>Login page</h1>
+    <Wrapper>
+      {/* autoComplete="off" */}
+      <FormWrapper>
+        <TitleText>Login</TitleText>
+        <form onSubmit={handleSubmit}>
+          <InputBox>
+            <SpanIcon>
+              <ion-icon name="person">
+                <MdEmail />
+              </ion-icon>
+            </SpanIcon>
+            <Input
+              type="email"
+              name="email"
+              autoComplete="off"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <Label $filled={email.length > 0}>Email</Label>
+          </InputBox>
 
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <label style={styles.label}>
-          <StyleText
-            id="outlined-basic"
-            label="Email-Address"
-            variant="outlined"
-            size="small"
-            type="email"
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </label>
+          <InputBox>
+            <SpanIcon>
+              <ion-icon name="person">
+                <FaLock />
+              </ion-icon>
+            </SpanIcon>
+            <Input
+              type="password"
+              name="password"
+              autoComplete="off"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Label $filled={password.length > 0}>Password</Label>
+          </InputBox>
 
-        <label style={styles.label}>
-          <StyleText
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            size="small"
-            type="password"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit">Войти</button>
-      </form>
-    </div>
+          <BtnLogin type="submit">Sign in</BtnLogin>
+        </form>
+      </FormWrapper>
+    </Wrapper>
   );
 }

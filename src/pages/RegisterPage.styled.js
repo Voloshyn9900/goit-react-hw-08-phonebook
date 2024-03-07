@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   width: 380px;
-  height: 380px;
+  height: 440px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
@@ -36,7 +36,7 @@ export const InputBox = styled.div`
   margin: 30px 0;
 `;
 
-export const BtnLogin = styled.button`
+export const BtnRegistration = styled.button`
   width: 100%;
   height: 45px;
   background: #162938;
@@ -67,6 +67,8 @@ export const Input = styled.input`
   color: #162938;
   font-weight: 600;
   padding: 0 35px 0 5px;
+
+  
 `;
 
 export const Label = styled.label`
@@ -86,3 +88,5 @@ export const Label = styled.label`
     top: -5px;
   }
 `;
+
+

@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchRegister } from '../redux/auth/operations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import { FaUser, FaLock } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import {
+  Wrapper,
+  FormWrapper,
+  TitleText,
+  InputBox,
+  BtnRegistration,
+  SpanIcon,
+  Input,
+  Label,
+} from './RegisterPage.styled';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -42,37 +43,62 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <Wrapper>
       {/* autoComplete="off" */}
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <label style={styles.label}>
-          Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
+      <FormWrapper>
+        <TitleText>Registration</TitleText>
+        <form onSubmit={handleSubmit}>
+          <InputBox>
+            <SpanIcon>
+              <ion-icon name="person">
+                <FaUser />
+              </ion-icon>
+            </SpanIcon>
+            <Input
+              type="text"
+              name="name"
+              autoComplete="off"
+              value={name}
+              onChange={handleChange}
+            />
+            <Label $filled={name.length > 0}>Username</Label>
+          </InputBox>
 
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+          <InputBox>
+            <SpanIcon>
+              <ion-icon name="person">
+                <MdEmail />
+              </ion-icon>
+            </SpanIcon>
+            <Input
+              type="email"
+              name="email"
+              autoComplete="off"
+              value={email}
+              onChange={handleChange}
+            />
+            <Label $filled={email.length > 0}>Email</Label>
+          </InputBox>
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
+          <InputBox>
+            <SpanIcon>
+              <ion-icon name="person">
+                <FaLock />
+              </ion-icon>
+            </SpanIcon>
+            <Input
+              type="password"
+              name="password"
+              autoComplete="off"
+              value={password}
+              onChange={handleChange}
+            />
+            <Label $filled={password.length > 0}>Password</Label>
+          </InputBox>
 
-        <button type="submit">Зарегистрироваться</button>
-      </form>
-    </div>
+          <BtnRegistration type="submit">Sign up</BtnRegistration>
+        </form>
+      </FormWrapper>
+    </Wrapper>
   );
 }

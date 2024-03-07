@@ -15,12 +15,6 @@ export const Container = styled.div`
   border-radius: ${props => props.theme.radii.md};
 `;
 
-export const Feedback = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-`;
 
 export const PhoneBook = styled.div`
   display: flex;

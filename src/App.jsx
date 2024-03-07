@@ -7,6 +7,7 @@ import { RedirectRoute } from 'components/Routes/RedirectRoute';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { PrivateRoutes } from 'components/Routes/PrivateRouts';
 import { PreLoader } from 'components/PreLoader/PreLoader';
+import Layout from 'components/Layout/Layout';
 
 // import HomePage from 'pages/HomePage';
 // import ContactsPage from 'pages/ContactsPage';
@@ -43,7 +44,7 @@ export const App = () => {
       }
     >
       <Routes>
-        <Route path="/" element={<AppHeader />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route
             path="/register"
