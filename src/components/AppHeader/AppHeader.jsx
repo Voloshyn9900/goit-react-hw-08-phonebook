@@ -5,16 +5,28 @@ import { selectIsLogin, selectUserData } from '../../redux/auth/selectors';
 import { UserMenu } from './UserMenu';
 import { StyledLink, Nav, BtnLogout, WraperProfile } from './AppHeader.styled';
 import { fetchlogOut } from '../../redux/auth/operations';
-// import UserMenu from './UserMenu';
-// import AuthNav from './AuthNav';
-// import { authSelectors } from '../redux/auth';
+import backgroundImage from '../../images/background.jpg';
 
 const styles = {
   header: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    padding: '20px 100px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottom: '1px solid #2A363B',
+    zIndex: 99,
+  },
+  divMain: {
+    display: 'flex',
+    justifyContent: 'center', // Исправлено: была ошибка в написании свойства
+    alignItems: 'center',
+    minHeight: '100vh', // Исправлено: была ошибка в написании свойства
+    background: `url(${backgroundImage}) no-repeat`, // Используйте шаблонные строки для вставки переменных
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
 };
 
@@ -23,7 +35,7 @@ export default function AppHeader() {
   const isLogin = useSelector(selectIsLogin);
   const dispatch = useDispatch();
   return (
-    <>
+    <div style={styles.divMain}>
       <header style={styles.header}>
         <Nav>
           <StyledLink to="/">Home</StyledLink>
@@ -40,6 +52,6 @@ export default function AppHeader() {
       </header>
       <Outlet />
       <footer></footer>
-    </>
+    </div>
   );
 }

@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchLogIn } from '../redux/auth/operations';
-// import { authOperations } from '../redux/auth';
+import TextField from '@mui/material/TextField';
+import { StyleText } from './LoginPage.styled';
 
 const styles = {
-  form: {
-    width: 320,
-  },
+
   label: {
     display: 'flex',
     flexDirection: 'column',
@@ -30,10 +29,13 @@ export default function LoginPage() {
     <div>
       <h1>Login page</h1>
 
-      <form onSubmit={handleSubmit} style={styles.form} >
+      <form onSubmit={handleSubmit} style={styles.form}>
         <label style={styles.label}>
-          Почта
-          <input
+          <StyleText
+            id="outlined-basic"
+            label="Email-Address"
+            variant="outlined"
+            size="small"
             type="email"
             name="email"
             value={email}
@@ -42,15 +44,17 @@ export default function LoginPage() {
         </label>
 
         <label style={styles.label}>
-          Пароль
-          <input
+          <StyleText
+            id="outlined-basic"
+            label="Password"
+            variant="outlined"
+            size="small"
             type="password"
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
         </label>
-
         <button type="submit">Войти</button>
       </form>
     </div>
