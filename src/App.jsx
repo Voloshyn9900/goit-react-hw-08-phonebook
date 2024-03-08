@@ -1,4 +1,3 @@
-import AppHeader from './components/AppHeader/AppHeader';
 import { Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import { fetchRefreshUser } from './redux/auth/operations';
@@ -7,6 +6,7 @@ import { RedirectRoute } from 'components/Routes/RedirectRoute';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { PrivateRoutes } from 'components/Routes/PrivateRouts';
 import { PreLoader } from 'components/PreLoader/PreLoader';
+import backgroundImage from './images/background.jpg';
 import Layout from 'components/Layout/Layout';
 
 // import HomePage from 'pages/HomePage';
@@ -36,7 +36,8 @@ export const App = () => {
           style={{
             width: '100vw',
             height: '100vh',
-            backgroundColor: '#ffffff',
+            background: `url(${backgroundImage}) no-repeat center`,
+            backgroundSize: 'cover',
           }}
         >
           <PreLoader />

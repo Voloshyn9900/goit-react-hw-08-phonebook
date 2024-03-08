@@ -1,17 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 export const Header = styled.header`
   position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
 `;
 
 export const Logo = styled.h2`
@@ -21,6 +20,9 @@ export const Logo = styled.h2`
 `;
 
 export const StyledLink = styled(NavLink)`
+  display: block;
+  /* margin-top: auto;
+  margin-bottom: auto; */
   position: relative;
   font-size: 1.1em;
   color: #fff;
@@ -50,7 +52,7 @@ export const StyledLink = styled(NavLink)`
   &:active::after,
   &.active::after {
     transform: scaleX(1);
-    background-color: #fff;; // Цвет бордера для активной ссылки
+    background-color: #fff; // Цвет бордера для активной ссылки
   }
 `;
 
@@ -60,6 +62,7 @@ export const Wraper = styled.div`
 
 export const Nav = styled.nav`
   display: flex;
+  align-items: center;
 `;
 
 export const WraperProfile = styled.div`
@@ -70,11 +73,28 @@ export const WraperProfile = styled.div`
 `;
 
 export const BtnLogout = styled.button`
-  margin-right: 20px;
-  margin-left: 20px;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 700;
-  color: #2a363b;
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: 0.5s;
+
+  &:hover {
+    background: #fff;
+    color: #162938;
+  }
+`;
+
+export const UserName = styled.p`
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
 `;

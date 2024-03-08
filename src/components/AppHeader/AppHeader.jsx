@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthNav from './AuthNav';
 import { selectIsLogin, selectUserData } from '../../redux/auth/selectors';
 import { UserMenu } from './UserMenu';
-import {Header,
+import {
+  Header,
   Logo,
-  StyledLink,
   Nav,
   BtnLogout,
   WraperProfile,
+  UserName,
 } from './AppHeader.styled';
 import { fetchlogOut } from '../../redux/auth/operations';
 
@@ -20,13 +21,15 @@ export default function AppHeader() {
       <Logo>Logo</Logo>
       <Nav>
         {isLogin ? <UserMenu /> : <AuthNav />}
+        {isLogin ? (
+          <WraperProfile>
+            <UserName>{userData.name}</UserName>
+            <BtnLogout onClick={() => dispatch(fetchlogOut())}>
+              Logout
+            </BtnLogout>
+          </WraperProfile>
+        ) : null}
       </Nav>
-      {isLogin ? (
-        <WraperProfile>
-          <p>{userData.name}</p>
-          <BtnLogout onClick={() => dispatch(fetchlogOut())}>Logout</BtnLogout>
-        </WraperProfile>
-      ) : null}
     </Header>
   );
 }

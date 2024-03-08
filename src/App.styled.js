@@ -23,8 +23,8 @@ export const PhoneBook = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.h1`
-  margin-top: 16px;
-  margin-bottom: 26px;
+export const Title = styled.h2`
+  font-size: 1.2em;
+  color: #162938;
   text-align: center;
 `;

@@ -1,8 +1,14 @@
 import { useEffect } from 'react';
-import { ButtonDel, List, ListItem } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from '../../redux/contacts/operations';
 import { selectVisiblContacts } from '../../redux/contacts/selectors';
+import {
+  ListWrapper,
+  ListContainer,
+  ListItem,
+  ItemText,
+  BtnDel,
+} from './ContactList.styled';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -14,17 +20,22 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <List>
-        {contacts.map(contact => (
-          <ListItem key={contact.id}>
-            {contact.name}: {contact.number}
-            <ButtonDel onClick={() => dispatch(deleteContact(contact.id))}>
-              Delete
-            </ButtonDel>
-          </ListItem>
-        ))}
-      </List>
-    </>
+    <ListWrapper>
+      <ListContainer>
+        {contacts
+          .slice()
+          .reverse()
+          .map(contact => (
+            <ListItem key={contact.id}>
+              <ItemText>
+                {contact.name}: {contact.number}
+              </ItemText>
+              <BtnDel onClick={() => dispatch(deleteContact(contact.id))}>
+                Delete
+              </BtnDel>
+            </ListItem>
+          ))}
+      </ListContainer>
+    </ListWrapper>
   );
 };

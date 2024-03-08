@@ -1,21 +1,20 @@
 import React from 'react';
-import { Section, Container, PhoneBook, Title } from '../App.styled';
 import { Form } from '../components/Form/Form';
 import { ContactList } from '../components/ContactList/ContactList';
 import { Filter } from '../components/Filter/Filter';
+import { Wrapper, WrapperInput } from './ContactsPage.styled';
 
 export default function ContactsPage() {
   return (
-    <Section>
-      <Container>
-        <PhoneBook>
-          <Title>PhoneBook</Title>
+    <>
+      <Wrapper>
+        <WrapperInput>
           <Form />
-          <Title>Contacts</Title>
+        </WrapperInput>
           <Filter />
           <ContactList />
-        </PhoneBook>
-      </Container>
-    </Section>
+      </Wrapper>
+      
+    </>
   );
 }
