@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const FilterWrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-
-  margin-top: 20px;
-`;
-
 export const FilterLabel = styled.label`
   position: relative;
   display: block;

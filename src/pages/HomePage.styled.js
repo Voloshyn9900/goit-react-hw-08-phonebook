@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   position: relative;
   max-width: 1120px;
-  max-height: 700px;
+  max-height: 600px;
   padding: 20px;
-  margin-left: 200px;
-  margin-bottom: 360px;
+  margin: 30px 45px 360px 200px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
